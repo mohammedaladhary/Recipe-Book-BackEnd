@@ -21,7 +21,6 @@ public class RecipeBookApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(RecipeBookApplication.class, args);
 	}
-//	Mohammed hasha
 	@Override
 	public void run(String... args) {
 		User adminAccount = userRepository.findByRole(Role.ADMIN);
