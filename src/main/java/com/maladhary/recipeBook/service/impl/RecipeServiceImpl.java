@@ -25,17 +25,23 @@ public class RecipeServiceImpl implements RecipeService {
         return recipeRepository.save(recipe);
     }
 
-//    @Override
-//    public void updateRecipe(Integer userId, Recipe recipe) {
-//        Recipe recipeFromDB = recipeRepository.findById(userId)
-//                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "The Recipe is not found"));
-//        Recipe.set(projectFromDB.getId());
-//        projectRepository.save(project);
-//    }
     @Override
     public void deleteRecipe(Integer recipeId) {
         Recipe recipeFromDB = recipeRepository.findById(recipeId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "The Recipe is not found"));
         recipeRepository.deleteById(recipeId);
     }
+
+    @Override
+    public void updateRecipe(Integer recipeId, Recipe recipe) {
+        Recipe recipeFromDB = recipeRepository.findById(recipeId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "The Recipe is not found"));
+        // Set the updated values to the recipeFromDB
+        recipeFromDB.setRecipeName(recipe.getRecipeName());
+        recipeFromDB.setCalories(recipe.getCalories());
+        recipeFromDB.setDescription(recipe.getDescription());
+        // Set other properties as needed
+        recipeRepository.save(recipeFromDB);
+    }
+
 }

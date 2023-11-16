@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface RecipeService {
-//    void updateRecipe(Integer userId, Recipe recipe);
-
     void deleteRecipe(Integer recipeId);
+    void updateRecipe(Integer recipeId, Recipe recipe);
+
 }

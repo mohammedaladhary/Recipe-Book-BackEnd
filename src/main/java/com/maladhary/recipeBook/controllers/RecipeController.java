@@ -59,12 +59,6 @@ public class RecipeController {
         }
     }
 
-//    @PutMapping("/recipes/update/{userId}")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void updateProject(@PathVariable Integer userId, @RequestBody @Valid Recipe recipe) {
-//        recipeServiceImpl.updateRecipe(userId, recipe);
-//    }
-
     @DeleteMapping("/recipes/delete/{recipeId}")
     public ResponseEntity<String> deleteRecipe(@PathVariable Integer recipeId) {
         try {
@@ -74,6 +68,18 @@ public class RecipeController {
         } catch (ResponseStatusException e) {
                 String errorMessage = "Recipe not found";
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+        }
+    }
+
+    @PutMapping("/recipes/update/{recipeId}")
+    public ResponseEntity<String> updateRecipe(@PathVariable Integer recipeId, @RequestBody @Valid Recipe recipe) {
+        try {
+            recipeServiceImpl.updateRecipe(recipeId, recipe);
+            String message = "Recipe updated successfully";
+            return ResponseEntity.status(HttpStatus.OK).body(message);
+        } catch (ResponseStatusException e) {
+            String errorMessage = "Recipe not found";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
         }
     }
 }
