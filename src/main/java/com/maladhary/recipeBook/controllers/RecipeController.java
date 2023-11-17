@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
@@ -81,5 +82,12 @@ public class RecipeController {
             String errorMessage = "Recipe not found";
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
         }
+    }
+
+    @PatchMapping("/recipes/custom-update/{recipeId}")
+    public String customUpdateRecipe(
+            @PathVariable Integer recipeId,
+            @RequestBody Map<String, Object> updates){
+        return recipeServiceImpl.customUpdateRecipe(recipeId, updates);
     }
 }

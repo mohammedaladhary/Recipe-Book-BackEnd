@@ -11,6 +11,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+
 @Service
 @Slf4j
 public class RecipeServiceImpl implements RecipeService {
@@ -44,4 +46,28 @@ public class RecipeServiceImpl implements RecipeService {
         recipeRepository.save(recipeFromDB);
     }
 
+    @Override
+    public String customUpdateRecipe(Integer recipeId, Map<String, Object> updates) {
+        Recipe recipe = recipeRepository.findById(recipeId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "The Recipe is not found"));
+
+        updateCourseAttributes(recipe, updates);
+
+        recipeRepository.save(recipe);
+        return "Recipe name updated successfully";
+    }
+
+    private void updateCourseAttributes(Recipe recipe, Map<String, Object> updates) {
+        for (Map.Entry<String, Object> entry : updates.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            //here you can create multiple attributes to update its attributes
+            if (key.equals("newRecipeName")) {
+                recipe.setRecipeName(value.toString());
+            } else {
+                throw new IllegalArgumentException("Invalid attribute: " + key);
+            }
+        }
+    }
 }
