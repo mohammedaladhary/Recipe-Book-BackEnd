@@ -26,13 +26,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+//    public UserDetailsService userDetailsService() {
+//        return new UserDetailsService() {
+//            @Override
+//            public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+//                return userRepository.findByEmail(email)
+//                        .orElseThrow(() -> new UsernameNotFoundException("Email not found"));
+//                }
+//        };
+//    }
     public UserDetailsService userDetailsService() {
         return new UserDetailsService() {
             @Override
-            public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-                return userRepository.findByEmail(email)
-                        .orElseThrow(() -> new UsernameNotFoundException("Email not found"));
+            public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+                UserDetails userDetails =  userRepository.findByName(name);
+                if(userDetails == null){
+                    throw new UsernameNotFoundException("User not found");
                 }
+                return userDetails;
+            }
         };
     }
 }

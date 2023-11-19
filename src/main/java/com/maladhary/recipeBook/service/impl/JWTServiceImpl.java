@@ -1,6 +1,6 @@
 package com.maladhary.recipeBook.service.impl;
 
-import com.maladhary.recipeBook.model.User;
+import com.maladhary.recipeBook.model.Role;
 import com.maladhary.recipeBook.service.interfaces.JWTService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -13,13 +13,15 @@ import org.springframework.stereotype.Service;
 import java.security.Key;
 import java.util.Date;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Function;
 
 @Service
 public class JWTServiceImpl implements JWTService {
-    public String generateToken(UserDetails userDetails){
-        return Jwts.builder().setSubject(userDetails.getUsername())
+    public String generateToken(UserDetails userDetails, int userId, Role role){
+        return Jwts.builder()
+                .setSubject(userDetails.getUsername())
+                .claim("userId",userId)
+                .claim("role",role)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
                 .signWith(getSiginKey(), SignatureAlgorithm.HS256)
@@ -55,6 +57,12 @@ public class JWTServiceImpl implements JWTService {
         Date expiration = extractClaim(token, Claims::getExpiration);
         return expiration != null && expiration.before(new Date());
 
+    }
+    public String extractUserId(String token){
+        return extractClaim(token, claims -> claims.get("userId", String.class));
+    }
+    public String extractUserRole(String token){
+        return extractClaim(token, claims -> claims.get("role", String.class));
     }
     public boolean isTokenValid(String token, UserDetails userDetails){
         final String username = extractUsername(token);

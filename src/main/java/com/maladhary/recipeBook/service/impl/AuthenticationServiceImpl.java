@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -41,16 +42,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
     public JwtAuthenticationResponse signin(SignInRequest signInRequest){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                signInRequest.getEmail(), signInRequest.getPassword()));
-
-        var user = userRepository.findByEmail(signInRequest.getEmail()).orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
-        var jwt = jwtService.generateToken(user);
-//        var refreshToken = jwtService.generateRefreshToken(new HashMap<>(),user);
-
+                signInRequest.getName(), signInRequest.getPassword()));
+        var user = userRepository.findByName(signInRequest.getName());
+        if(user == null){
+            throw new UsernameNotFoundException("User not found");
+        }
+        var token = jwtService.generateToken(user, user.getUserId(), user.getRole());
         JwtAuthenticationResponse jwtAuthenticationResponse = new JwtAuthenticationResponse();
 
-        jwtAuthenticationResponse.setToken(jwt);
-//        jwtAuthenticationResponse.setRefreshToken(refreshToken);
+        jwtAuthenticationResponse.setToken(token);
         return jwtAuthenticationResponse;
     }
 }

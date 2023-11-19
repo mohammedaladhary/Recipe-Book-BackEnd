@@ -28,7 +28,7 @@ public class RecipeController {
         this.recipeServiceImpl = recipeServiceImpl;
     }
 
-    @GetMapping("admin/welcome")
+    @GetMapping("user/welcome")
         public String greetingUser(){
             return "Welcome to the Recipe Management Page...";
         }
