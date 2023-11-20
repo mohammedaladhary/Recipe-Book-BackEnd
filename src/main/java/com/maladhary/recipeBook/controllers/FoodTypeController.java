@@ -24,6 +24,12 @@ public class FoodTypeController {
         return foodTypeServiceImpl.getAllFoodTypes();
     }
 
+    @GetMapping("/foodtype/{foodTypeId}")
+    @ResponseStatus(HttpStatus.OK)
+    public FoodType getFoodTypeById(@PathVariable(name = "foodTypeId") Integer foodTypeId) {
+        return foodTypeServiceImpl.getRecipesByFoodTypeId(foodTypeId);
+    }
+
     @GetMapping("/foodtype/{foodTypeId}/recipes")
     @ResponseStatus(HttpStatus.OK)
     public FoodType getRecipesByFoodTypeId(@PathVariable(name = "foodTypeId") Integer foodTypeId) {
