@@ -1,6 +1,7 @@
 package com.maladhary.recipeBook.controllers;
 
 import com.maladhary.recipeBook.model.FoodType;
+import com.maladhary.recipeBook.model.Recipe;
 import com.maladhary.recipeBook.service.impl.FoodTypeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,12 @@ public class FoodTypeController {
     @ResponseStatus(HttpStatus.OK)
     public List<FoodType> getAllFoodTypes() {
         return foodTypeServiceImpl.getAllFoodTypes();
+    }
+
+    @GetMapping("/foodtype/{foodTypeId}/recipes")
+    @ResponseStatus(HttpStatus.OK)
+    public FoodType getRecipesByFoodTypeId(@PathVariable(name = "foodTypeId") Integer foodTypeId) {
+        return foodTypeServiceImpl.getRecipesByFoodTypeId(foodTypeId);
     }
 
     @PostMapping("/foodtype/new")

@@ -42,6 +42,11 @@ public class FoodTypeServiceImpl implements FoodTypeService {
         return "Food Type name updated successfully";
     }
 
+    @Override
+    public FoodType getRecipesByFoodTypeId(Integer foodTypeId) {
+        return foodTypeRepository.findById(foodTypeId).get();
+    }
+
     private void updateCourseAttributes(FoodType foodType, Map<String, Object> updates) {
         for (Map.Entry<String, Object> entry : updates.entrySet()) {
             String key = entry.getKey();
