@@ -32,7 +32,7 @@ public class FoodTypeServiceImpl implements FoodTypeService {
     }
 
     @Override
-    public String customUpdateRecipe(Integer foodTypeId, Map<String, Object> updates) {
+    public String customUpdateFoodType(Integer foodTypeId, Map<String, Object> updates) {
         FoodType foodType = foodTypeRepository.findById(foodTypeId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "The Food Type is not found"));
 

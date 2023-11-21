@@ -1,7 +1,6 @@
 package com.maladhary.recipeBook.controllers;
 
 import com.maladhary.recipeBook.model.FoodType;
-import com.maladhary.recipeBook.model.Recipe;
 import com.maladhary.recipeBook.service.impl.FoodTypeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -55,9 +54,9 @@ public class FoodTypeController {
     }
 
     @PatchMapping("/foodtype/custom-update/{foodTypeId}")
-    public String customUpdateRecipe(
+    public String customUpdateFoodType(
             @PathVariable Integer foodTypeId,
             @RequestBody Map<String, Object> updates){
-        return foodTypeServiceImpl.customUpdateRecipe(foodTypeId, updates);
+        return foodTypeServiceImpl.customUpdateFoodType(foodTypeId, updates);
     }
 }
