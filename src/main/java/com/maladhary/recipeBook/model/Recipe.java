@@ -30,13 +30,6 @@ public class Recipe {
     @JsonBackReference // Add this annotation to break the circular reference
     private FoodType foodType;
 
-//    public Recipe(String recipeName, int calories, String description, User user) {
-//        this.recipeName = recipeName;
-//        this.calories = calories;
-//        this.description = description;
-//        this.user = user;
-//    }
-
     public Recipe(String recipeName, int calories, String description, User user, FoodType foodType) {
         this.recipeName = recipeName;
         this.calories = calories;

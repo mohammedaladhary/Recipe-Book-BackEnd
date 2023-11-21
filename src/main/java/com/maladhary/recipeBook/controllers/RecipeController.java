@@ -45,7 +45,7 @@ public class RecipeController {
     }
 
     @PostMapping("/recipes/new")
-    public ResponseEntity<String> addRecipe(@RequestBody @Valid Recipe recipe){
+    public ResponseEntity<Object> addRecipe(@RequestBody @Valid Recipe recipe){
         try {
             //Use the service layer add method to add the course
             recipeServiceImpl.addRecipe(recipe);
@@ -61,7 +61,7 @@ public class RecipeController {
     }
 
     @DeleteMapping("/recipes/delete/{recipeId}")
-    public ResponseEntity<String> deleteRecipe(@PathVariable Integer recipeId) {
+    public ResponseEntity<Object> deleteRecipe(@PathVariable Integer recipeId) {
         try {
             recipeServiceImpl.deleteRecipe(recipeId);
             String message = "Recipe deleted successfully";

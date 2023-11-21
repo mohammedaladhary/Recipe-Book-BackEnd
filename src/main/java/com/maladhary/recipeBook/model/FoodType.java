@@ -25,10 +25,6 @@ public class FoodType {
     @JsonManagedReference // Add this annotation to break the circular reference
     private List<Recipe> recipes;
 
-//    public FoodType(String name) {
-//        this.foodTypeName = name;
-//    }
-
     public FoodType(String foodTypeName, List<Recipe> recipes) {
         this.foodTypeName = foodTypeName;
         this.recipes = recipes;
