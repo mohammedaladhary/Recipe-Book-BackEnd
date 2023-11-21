@@ -1,0 +1,377 @@
+{
+	"info": {
+		"_postman_id": "ea4d514a-2640-4ec1-8a09-b4eea42cb19d",
+		"name": "RecipeBook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28716040"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"email\": \"mohammed@sda.com\",\n        \"password\": \"mohd11\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5005/auth/signin",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"name\": \"mohammed\",\n        \"email\": \"mohammed@sda.com\",\n        \"password\": \"mohd11\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5005/auth/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5005/auth/users",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"auth",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "welcome",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYWxpbSIsImlhdCI6MTcwMDM5MjY3MCwiZXhwIjoxNzAwMzk2MjcwfQ.xA16iOZa4Oco-pFIwHVI8WUtoOChgna5idoZ4EvkyTw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5005/auth/admin/welcome",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"auth",
+								"admin",
+								"welcome"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recipe",
+			"item": [
+				{
+					"name": "add recipe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"recipeName\": \"CheeseBurger\",\n  \"calories\": 69,\n  \"description\": \"sdfssdss\",\n  \"foodType\":{\n    \"foodTypeId\": 1\n  },\n  \"user\":{\n      \"userId\": 1\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5005/auth/recipes/new",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"auth",
+								"recipes",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show recipes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5005/auth/recipes",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"auth",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update recipe",
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete recipe",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5005/auth/recipes/delete/2",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"auth",
+								"recipes",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get recipe by recipeId",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "custom-update recipe",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"newRecipeName\": \"Rice\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5005/auth/recipes/custom-update/7",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"auth",
+								"recipes",
+								"custom-update",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FoodType",
+			"item": [
+				{
+					"name": "add foodType",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"foodTypeName\": \"Meats\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5005/auth/foodtype/new",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"auth",
+								"foodtype",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show all foodTypes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5005/auth/foodtype",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"auth",
+								"foodtype"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete foodType",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5005/auth/foodtype/delete/2",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"auth",
+								"foodtype",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update foodType",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"newFoodTypeName\": \"Chicken\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5005/auth/foodtype/custom-update/3",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"auth",
+								"foodtype",
+								"custom-update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show recipes by foodtype",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5005/auth/foodtype/1/recipes",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"auth",
+								"foodtype",
+								"1",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
