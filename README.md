@@ -7,6 +7,9 @@ The Recipe Book App is a digital platform where users can store and share their 
 ## Class Diagram
 ![Class Diagram](recipeBook.png)
 
+## Use-case Diagran
+![Class Diagram](use-case-recipe-book.drawio.png)
+
 ## Front-end Part
 https://github.com/mohammedaladhary/Recipe-Book-FE.git
 
