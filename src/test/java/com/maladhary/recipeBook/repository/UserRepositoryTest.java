@@ -40,7 +40,7 @@ class UserRepositoryTest{
 
     @Test
     public void FindByUserName(){
-        Optional<User> userFromDb = userRepository.findByName("Mohammed");
+        User userFromDb = userRepository.findByName("Mohammed");
         assertEquals(user1.getName(), "Mohammed");
     }
 }

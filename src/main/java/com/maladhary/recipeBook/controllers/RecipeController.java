@@ -72,7 +72,7 @@ public class RecipeController {
         }
     }
 
-    @PutMapping("/recipes/update/{recipeId}")
+    @PutMapping("/recipes/{recipeId}")
     public ResponseEntity<String> updateRecipe(@PathVariable Integer recipeId, @RequestBody @Valid Recipe recipe) {
         try {
             recipeServiceImpl.updateRecipe(recipeId, recipe);

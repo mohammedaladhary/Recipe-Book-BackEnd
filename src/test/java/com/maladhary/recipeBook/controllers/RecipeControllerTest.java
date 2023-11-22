@@ -29,7 +29,7 @@ class RecipeControllerTest {
         when(recipeService.addRecipe(any(Recipe.class))).thenReturn(mockRecipe);
 
         // When
-        ResponseEntity<String> result = recipeController.addRecipe(mockRecipe);
+        ResponseEntity<Object> result = recipeController.addRecipe(mockRecipe);
 
         // Then
         assertEquals(HttpStatus.OK, result.getStatusCode());
